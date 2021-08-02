@@ -16,6 +16,10 @@ public class Config {
                         .path("/get")
                         .filters(filter -> filter.addRequestHeader("myheader", "ohmygod")) // adding request header when hit to uri
                         .uri("http://httpbin.org:80"))
+                // create endpoint gateway /post
+                .route(api -> api
+                        .path("/post")
+                        .uri("forward:/test/post"))
                 .build();
     }
 

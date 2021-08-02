@@ -16,7 +16,13 @@ public class Config {
                         .path("/get")
                         .filters(filter -> filter.addRequestHeader("myheader", "ohmygod")) // adding request header when hit to uri
                         .uri("http://httpbin.org:80"))
+                .build();
+    }
 
+    @Bean("routeLocatorHystrix")
+    public RouteLocator routeLocatorHystrix(RouteLocatorBuilder builder) {
+        return builder
+                .routes()
                 // hystrix implementation example
                 .route(api -> api
                         .host("*.hystrix.com") // hystrix, only allow with headers Host <any>.hystrix.com
